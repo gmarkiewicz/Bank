@@ -22,14 +22,23 @@ public abstract class Account {
         this.surname = surname;
     }
 
-    public void openAcc(String name, String surname, int pesel, String accNum, AccType accType) {
+    public void openAcc(String name, String surname, int pesel, String accNum) {
         this.name = name;
         this.surname = surname;
         this.pesel = pesel;
         this.accNum = accNum;
-        this.accType = accType;
+        openedAcc = true;
+        accBalance = 0;
     }
-
+    public void closeAcc(){
+        name = "";
+        surname = "";
+        pesel = 0;
+        accNum = "";
+        accType = null;
+        accBalance = 0;
+        openedAcc = false;
+    }
     public boolean isOpenedAcc() {
         return openedAcc;
     }
@@ -64,7 +73,7 @@ public abstract class Account {
 
     public String toString() {
         return name + " " + surname + " | Nr konta: " + accNum + "\nStan konta: " + accBalance + " | Typ konta:" +
-                accType + "\n-----------------";
+                accType + " | Czy konto jest aktywne:" + isOpenedAcc();
     }
 
     public abstract AccType getAccType();
